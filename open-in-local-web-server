@@ -1,0 +1,11 @@
+#!/bin/bash
+
+open http://localhost:8000
+
+cd "$(dirname "$BASH_SOURCE")" || {
+    echo "Error getting script directory" >&2
+    exit 1
+}
+
+#python -m SimpleHTTPServer 8000
+python3 -m http.server --cgi 8000

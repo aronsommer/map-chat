@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Map Chat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="Aron Sommer"> <!-- aronsommer@gmail.com -->
+    <meta name="description" content="This map lets you chat with all visitors on the website while seeing their location">
+    <meta name="keywords" content="map, realtime, location">
+
+    <!-- leaflet css  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css">
+
+    <!-- leaflet js  -->
+    <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js"></script>
+
+    <!-- style css  -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div id="map"></div>
+    <button id="buttonZoomIn">&plus;</button>
+    <button id="buttonZoomOut">&minus;</button>
+    <button id="buttonZoomToMarkers" class="buttonZoomToMarkers" onclick="zoomToMarkers()">Show All Users (0)</button>
+    <button id="buttonZoomToMyMarker" onclick="zoomToMe()">Show Me</button>
+    <div id="formDiv">
+        <input type="text" id="formInput" placeholder="Type your status here..." value="" maxlength="100"><button
+            id="formButton" onclick="submitText()">Submit</button>
+    </div>
+    <div id="startInfo">
+        <div id="startInfoInner">
+            This map will show your location to all other visitors currently on this website.
+            <br><br>Your data will be deleted from the database when you leave this website.
+            <br><br><button id="startInfoButton" onclick="startAuth()">OK</button>
+        </div>
+    </div>
+
+    <!-- map js  -->
+    <script type="module" src="./map.js"></script>
+
+    <!-- database js -->
+    <script type="module" src="./database.js"></script>
+
+    <!-- scripts -->
+    <script type="module">
+        // Start authentication when user has read the start info
+        import { startAuthentication } from './database.js';
+        window.startAuth = () => {
+            document.getElementById("startInfo").style.display = "none";
+            startAuthentication();
+        };
+        // Delete user if he closes the page
+        import { deleteMe } from './database.js';
+        window.onbeforeunload = function (e) {
+            deleteMe();
+            //return "Please stay on this page and we will give you candy";
+        };
+        // Delete user if he closes the page on iOS
+        window.onpagehide = function (e) {
+            deleteMe();
+        };
+        // Fit view to show all markers
+        import { zoomToFitAllMarkers } from './map.js';
+        window.zoomToMarkers = () => {
+            zoomToFitAllMarkers();
+        };
+        // Fit view to show my marker
+        import { zoomToMyMarker } from './map.js';
+        window.zoomToMe = () => {
+            zoomToMyMarker();
+        };
+        // Write new text
+        import { writeUserText, createdMyUserEntry } from './database.js';
+        window.submitText = () => {
+            if (createdMyUserEntry == false) { console.log("Can not submit text"); }
+            if (createdMyUserEntry == true) {
+                var value = document.getElementById('formInput').value;
+                writeUserText(value);
+                document.getElementById('formInput').value = '';
+            }
+        };
+        // Write new text when the user presses the "Enter" key on the keyboard
+        var input = document.getElementById("formInput");
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                submitText();
+            }
+        });
+    </script>
+</body>
+
+</html>
