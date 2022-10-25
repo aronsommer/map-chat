@@ -1,5 +1,7 @@
 import { myUserId, myUserName, writeUserData, updateUserData, updateUserCounter } from './database.js';
 
+const popupOptions = { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 };
+
 // Function which finds and returns marker by id
 // Use like this: map.getMarkerById(1234);
 L.Map.include({
@@ -136,8 +138,8 @@ function updatePosition(position) {
         // Write my user data and add my marker and circle to map with correct coordinates
         writeUserData(myUserId, lat, long);
         featureGroup.addTo(map);
-        // myMarker.bindPopup("This is you" + "<br>" + myUserId.substring(0, 7), { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-        myMarker.bindPopup("This is you" + "<br>" + myUserName, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+        // myMarker.bindPopup("This is you" + "<br>" + myUserId.substring(0, 7), popupOptions).openPopup();
+        myMarker.bindPopup("This is you" + "<br>" + myUserName, popupOptions).openPopup();
         // Only go to your position the first time
         map.fitBounds(featureGroup.getBounds());
     }
@@ -158,8 +160,8 @@ export function addNewUserMarker(userId, lat, long, txt = "", userName) {
     // marker.customID = userId;
     // marker.on('click', onMarkerClick);
     marker.addTo(map);
-    // marker.bindPopup(userId.substring(0, 7) + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-    marker.bindPopup(userName + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+    // marker.bindPopup(userId.substring(0, 7) + "<br>" + txt, popupOptions).openPopup();
+    marker.bindPopup(userName + "<br>" + txt, popupOptions).openPopup();
 }
 
 // Marker on click function
@@ -185,12 +187,12 @@ export function updateMarkerText(userId, txt = "", userName) {
         // console.log(txt + " / " + popupContentWithoutUserId);
         if (txt != popupContentWithoutUserId) {
             if (myMarker.isPopupOpen()) {
-                // myMarker._popup.setContent("This is you" + "<br>" + myUserId.substring(0, 7) + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-                myMarker._popup.setContent("This is you" + "<br>" + myUserName + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+                // myMarker._popup.setContent("This is you" + "<br>" + myUserId.substring(0, 7) + "<br>" + txt, popupOptions).openPopup();
+                myMarker._popup.setContent("This is you" + "<br>" + myUserName + "<br>" + txt, popupOptions).openPopup();
             }
             if (!myMarker.isPopupOpen()) {
-                // myMarker.bindPopup("This is you" + "<br>" + myUserId.substring(0, 7) + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-                myMarker.bindPopup("This is you" + "<br>" + myUserName + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+                // myMarker.bindPopup("This is you" + "<br>" + myUserId.substring(0, 7) + "<br>" + txt, popupOptions).openPopup();
+                myMarker.bindPopup("This is you" + "<br>" + myUserName + "<br>" + txt, popupOptions).openPopup();
             }
         }
     }
@@ -204,12 +206,12 @@ export function updateMarkerText(userId, txt = "", userName) {
         if (txt != popupContentWithoutUserId) {
             console.log("User with userID " + userId + " has new text\n" + txt);
             if (marker.isPopupOpen()) {
-                // marker._popup.setContent(userId.substring(0, 7) + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-                marker._popup.setContent(userName + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+                // marker._popup.setContent(userId.substring(0, 7) + "<br>" + txt, popupOptions).openPopup();
+                marker._popup.setContent(userName + "<br>" + txt, popupOptions).openPopup();
             }
             if (!marker.isPopupOpen()) {
-                // marker.bindPopup(userId.substring(0, 7) + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
-                marker.bindPopup(userName + "<br>" + txt, { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 }).openPopup();
+                // marker.bindPopup(userId.substring(0, 7) + "<br>" + txt, popupOptions).openPopup();
+                marker.bindPopup(userName + "<br>" + txt, popupOptions).openPopup();
             }
         }
     }
