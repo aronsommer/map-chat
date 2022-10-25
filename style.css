@@ -23,6 +23,7 @@ body {
     word-wrap: break-word;
     font-size: 15px;
     color: black;
+    overflow: hidden;
 }
 
 * {
