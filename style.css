@@ -24,6 +24,7 @@ body {
     font-size: 15px;
     color: black;
     overflow: hidden;
+    max-height: 300px;
 }
 
 * {
