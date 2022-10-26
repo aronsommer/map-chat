@@ -17,6 +17,20 @@
 
     <!-- style css  -->
     <link rel="stylesheet" href="./style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-791852463"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-791852463');
+    </script>
+    <!-- Event snippet for Website traffic conversion page -->
+    <script>
+        gtag('event', 'conversion', { 'send_to': 'AW-791852463/BbgNCOacuIAYEK_ryvkC' });
+    </script>
 </head>
 
 <body>
@@ -27,8 +41,8 @@
     <button id="buttonZoomToMarkers" class="buttonZoomToMarkers" onclick="zoomToMarkers()">Show All Users (0)</button>
     <button id="buttonZoomToMyMarker" onclick="zoomToMe()">Show Me</button>
     <div id="formDiv">
-        <input type="text" id="formInput" placeholder="Type a message" value="" maxlength="100"><button
-            id="formButton" onclick="submitText()">Submit</button>
+        <input type="text" id="formInput" placeholder="Type a message" value="" maxlength="100"><button id="formButton"
+            onclick="submitText()">Submit</button>
     </div>
     <div id="startInfo" data-nosnippet>
         <div id="startInfoInner">
