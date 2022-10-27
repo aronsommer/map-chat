@@ -118,7 +118,7 @@ body {
 
 #formDiv {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     z-index: 400;
     text-align: center;
     margin: 0;

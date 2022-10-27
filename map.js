@@ -50,6 +50,12 @@ let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 });
 osm.addTo(map);
 
+// Attribution control
+L.control.attribution({
+    // position: 'topright'
+    position: 'bottomright'
+}).addTo(map);
+
 // Zoom in button
 L.DomEvent.on(L.DomUtil.get('buttonZoomIn'), 'click', function () {
     map.setZoom(map.getZoom() + 1);
@@ -76,8 +82,8 @@ var intervalFunction;
 
 // Check if my marker already exists
 // if yes remove it from the map to avoid duplicate
-export function checkIfMyMarkerAlreadyExists(){
-    if (map.getMarkerById(myUserId)){
+export function checkIfMyMarkerAlreadyExists() {
+    if (map.getMarkerById(myUserId)) {
         console.log("Your marker does already exist. Will remove it.");
         map.removeLayer(map.getMarkerById(myUserId));
         updateUserCounter(-1);
