@@ -51,10 +51,12 @@ let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 osm.addTo(map);
 
 // Attribution control
-L.control.attribution({
+let attributionControl = L.control.attribution({
     // position: 'topright'
     position: 'bottomright'
 }).addTo(map);
+
+map.attributionControl.setPrefix('<a href="https://www.aronsommer.com/">AS</a> | <a href="https://leafletjs.com/">Leaflet</a>');
 
 // Zoom in button
 L.DomEvent.on(L.DomUtil.get('buttonZoomIn'), 'click', function () {

@@ -201,3 +201,27 @@ input:focus {
     line-height: 0 !important;
     padding: 0;
 }
+
+#credits {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    bottom: 0;
+    padding: 0 5px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #0078A8;
+}
+
+#credits a {
+    color: #0078A8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#credits a:hover {
+    text-decoration: underline;
+}
