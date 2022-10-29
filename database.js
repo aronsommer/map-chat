@@ -129,10 +129,12 @@ export function updateUserData(lat, long) {
 }
 
 export function writeUserText(txt) {
+    // Clean up text
+    let cleanedText = txt.replace("img", "image");
     update(ref(db, 'users/' + myUserId), {
-        text: txt
+        text: cleanedText
     });
-    updateMarkerText(myUserId, txt, myUserName);
+    updateMarkerText(myUserId, cleanedText, myUserName);
 }
 
 const usersRef = ref(db, 'users/');
