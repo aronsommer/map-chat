@@ -129,13 +129,14 @@ function showError(error) {
 }
 
 // Update position of my marker
-let lat;
-let long;
-let accuracy;
 let updatePositionFirstTime = true;
 function updatePosition(position) {
 
     // console.log(position)
+    
+    let lat;
+    let long;
+    let accuracy;
 
     // Get exact position
     lat = position.coords.latitude;
