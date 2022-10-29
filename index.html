@@ -25,6 +25,7 @@
     <!-- <div id="credits"><a href="https://www.aronsommer.com/">AS</a></div> -->
     <button id="buttonZoomIn">&plus;</button>
     <button id="buttonZoomOut">&minus;</button>
+    <button id="buttonChangeAccuracy" onclick="changeAcc()">Accuracy Low</button>
     <button id="buttonZoomToMarkers" class="buttonZoomToMarkers" onclick="zoomToMarkers()">Show All Users (0)</button>
     <button id="buttonZoomToMyMarker" onclick="zoomToMe()">Show Me</button>
     <div id="formDiv">
@@ -62,6 +63,11 @@
         // Delete user if he closes the page on iOS
         window.onpagehide = function (e) {
             deleteMe();
+        };
+        // Change accuracy
+        import { changeAccuracy } from './map.js';
+        window.changeAcc = () => {
+            changeAccuracy();
         };
         // Fit view to show all markers
         import { zoomToFitAllMarkers } from './map.js';

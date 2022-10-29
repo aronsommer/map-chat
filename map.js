@@ -129,18 +129,34 @@ function showError(error) {
 }
 
 // Update position of my marker
+let lat;
+let long;
+let accuracy;
 let updatePositionFirstTime = true;
 function updatePosition(position) {
 
     // console.log(position)
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
-    let accuracy = position.coords.accuracy;
+
+    // Get exact position
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    accuracy = position.coords.accuracy;
+
+    // Add offset if accuracyLevel = 0
+    if (accuracyLevel == 0) {
+        // let offset = ((Math.random() > 0.5 ? 0.001 : -0.009) + Math.random() * 0.008);
+        let offset = ((Math.random() > 0.5 ? 0.0001 : -0.0009) + Math.random() * 0.0008);
+        lat = lat + offset;
+        long = long + offset;
+    }
 
     // Update position of myMarker and myCircle
     myMarker.setLatLng([lat, long]);
     myCircle.setLatLng([lat, long]);
     myCircle.setRadius(accuracy);
+
+    myLat = lat;
+    myLong = long;
 
     if (updatePositionFirstTime) {
         // Write my user data and add my marker and circle to map with correct coordinates
@@ -149,12 +165,10 @@ function updatePosition(position) {
         // myMarker.bindPopup("This is you" + "<br>" + myUserId.substring(0, 7), popupOptions).openPopup();
         myMarker.bindPopup("This is you" + "<br>" + myUserName, popupOptions).openPopup();
         // Only go to your position the first time
-        map.fitBounds(featureGroup.getBounds());
+        // map.fitBounds(featureGroup.getBounds());
+        map.setView([myLat, myLong], 15);
     }
     updatePositionFirstTime = false;
-
-    myLat = lat;
-    myLong = long;
 
     console.log("Your coordinates are\nLat: " + lat + " Long: " + long + " Accuracy: " + accuracy);
     // Update user data in database.js
@@ -263,10 +277,25 @@ function getFeaturesInView() {
 // Zoom to my marker
 export function zoomToMyMarker() {
     if (myLat != 0 && myLong != 0) {
-        map.fitBounds(featureGroup.getBounds());
-        // map.setView([myLat, myLong], 20);
+        // map.fitBounds(featureGroup.getBounds());
+        map.setView([myLat, myLong], 15);
     }
     if (myLat == 0 && myLong == 0) {
         console.log("Your Lat and Long is 0");
+    }
+}
+
+// Change accuracy
+let accuracyLevel = 0;
+export function changeAccuracy() {
+    if (accuracyLevel == 0) {
+        accuracyLevel = 1;
+        document.getElementById("buttonChangeAccuracy").textContent = "Accuracy High";
+        console.log("accuracyLevel = 1");
+    }
+    else if (accuracyLevel == 1) {
+        accuracyLevel = 0;
+        document.getElementById("buttonChangeAccuracy").textContent = "Accuracy Low";
+        console.log("accuracyLevel = 0");
     }
 }

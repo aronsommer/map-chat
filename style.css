@@ -34,6 +34,7 @@ body {
 
 #buttonZoomIn,
 #buttonZoomOut,
+#buttonChangeAccuracy,
 #buttonZoomToMarkers,
 #buttonZoomToMyMarker,
 #formInput,
@@ -80,9 +81,18 @@ body {
     line-height: 0 !important;
 }
 
-#buttonZoomToMarkers {
+#buttonChangeAccuracy {
     position: absolute;
     top: 10px;
+    right: 10px;
+    padding: 10px;
+    height: 40px;
+    z-index: 400;
+}
+
+#buttonZoomToMarkers {
+    position: absolute;
+    top: 60px;
     right: 10px;
     padding: 10px;
     height: 40px;
@@ -109,7 +119,7 @@ body {
 
 #buttonZoomToMyMarker {
     position: absolute;
-    top: 60px;
+    top: 110px;
     right: 10px;
     padding: 10px;
     height: 40px;
