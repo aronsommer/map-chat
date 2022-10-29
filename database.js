@@ -131,6 +131,7 @@ export function updateUserData(lat, long) {
 export function writeUserText(txt) {
     // Clean up text
     let cleanedText = txt.replace("img", "image");
+    cleanedText = txt.replace("<", ">");
     update(ref(db, 'users/' + myUserId), {
         text: cleanedText
     });
