@@ -130,13 +130,25 @@ export function updateUserData(lat, long) {
 
 export function writeUserText(txt) {
     // Clean up text
-    let cleanedText = txt;
-    cleanedText = cleanedText.replaceAll("img", "OMG");
-    cleanedText = cleanedText.replaceAll("<", ">");
+    let cleanedText = stripHtml(txt);
+    // cleanedText = cleanedText.replaceAll("img", "OMG");
+    // cleanedText = cleanedText.replaceAll("<", ">");
     update(ref(db, 'users/' + myUserId), {
         text: cleanedText
     });
     updateMarkerText(myUserId, cleanedText, myUserName);
+}
+
+// Strip HTML from text
+// function stripHtml(html) {
+//     let tmp = document.createElement("DIV");
+//     tmp.innerHTML = html;
+//     return tmp.textContent || tmp.innerText || "";
+// }
+
+function stripHtml(html) {
+    let doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
 }
 
 const usersRef = ref(db, 'users/');
