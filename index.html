@@ -48,6 +48,8 @@
 
     <!-- scripts -->
     <script type="module">
+        // Disable console.log
+        window.console.log = function () {};
         // Start authentication when user has read the start info
         import { startAuthentication } from './database.js';
         window.startAuth = () => {
