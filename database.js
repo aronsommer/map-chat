@@ -129,14 +129,21 @@ export function updateUserData(lat, long) {
 }
 
 export function writeUserText(txt) {
-    // Clean up text
-    let cleanedText = stripHtml(txt);
-    // cleanedText = cleanedText.replaceAll("img", "OMG");
-    // cleanedText = cleanedText.replaceAll("<", ">");
-    update(ref(db, 'users/' + myUserId), {
-        text: cleanedText
-    });
-    updateMarkerText(myUserId, cleanedText, myUserName);
+    // Check if text contains < or >
+    if (txt.includes("<") || txt.includes(">")) {
+        window.alert("Text can not contain < or >");
+    }
+    else {
+        // Clean up text
+        let cleanedText = txt;
+        // let cleanedText = stripHtml(txt);
+        // cleanedText = cleanedText.replaceAll("img", "OMG");
+        // cleanedText = cleanedText.replaceAll("<", ">");
+        update(ref(db, 'users/' + myUserId), {
+            text: cleanedText
+        });
+        updateMarkerText(myUserId, cleanedText, myUserName);
+    }
 }
 
 // Strip HTML from text
