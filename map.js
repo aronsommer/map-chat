@@ -256,7 +256,13 @@ export function zoomToFitAllMarkers() {
         allMarkers.forEach(marker => {
             markerBounds.extend([marker.lat, marker.lng]);
         });
+        // If I am the only user zoom to my marker
+        if (allMarkers.length == 1){
+        zoomToMyMarker()
+        }
+        if (allMarkers.length > 1){
         map.fitBounds(markerBounds.pad(0.5));
+        }        
     }
     if (allMarkers.length === 0) { console.log("Found no markers!"); }
 }
