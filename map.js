@@ -258,7 +258,7 @@ export function zoomToFitAllMarkers() {
         });
         // If I am the only user zoom to my marker
         if (allMarkers.length == 1){
-        zoomToMyMarker()
+        zoomToMyMarker(3)
         }
         if (allMarkers.length > 1){
         map.fitBounds(markerBounds.pad(0.5));
@@ -282,10 +282,10 @@ function getFeaturesInView() {
 }
 
 // Zoom to my marker
-export function zoomToMyMarker() {
+export function zoomToMyMarker(zoomLevel = 6) {
     if (myLat != 0 && myLong != 0) {
         // map.fitBounds(featureGroup.getBounds());
-        map.setView([myLat, myLong], 6);
+        map.setView([myLat, myLong], zoomLevel);
     }
     if (myLat == 0 && myLong == 0) {
         console.log("Your Lat and Long is 0");
