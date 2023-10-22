@@ -279,7 +279,7 @@ function getFeaturesInView() {
 export function zoomToMyMarker() {
     if (myLat != 0 && myLong != 0) {
         // map.fitBounds(featureGroup.getBounds());
-        map.setView([myLat, myLong], 15);
+        map.setView([myLat, myLong], 6);
     }
     if (myLat == 0 && myLong == 0) {
         console.log("Your Lat and Long is 0");
