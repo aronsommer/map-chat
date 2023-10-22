@@ -2,6 +2,8 @@ import { myUserId, myUserName, writeUserData, updateUserData, updateUserCounter 
 
 const popupOptions = { closeOnClick: false, autoClose: false, autoPan: false, maxWidth: 150, maxHeight: 300 };
 
+const defaultZoomLevel = 2;
+
 // Function which finds and returns marker by id
 // Use like this: map.getMarkerById(1234);
 L.Map.include({
@@ -41,7 +43,7 @@ let iconRed = L.icon({
 });
 
 // Map initialization 
-export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], 2);
+export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], defaultZoomLevel);
 // let map = L.map('map', { attributionControl: false }).setView([0, 0], 2);
 
 // OSM layer
@@ -167,7 +169,7 @@ function updatePosition(position) {
         myMarker.bindPopup("This is you" + "<br>" + myUserName, popupOptions).openPopup();
         // Only go to your position the first time
         // map.fitBounds(featureGroup.getBounds());
-        map.setView([myLat, myLong], 2);
+        map.setView([myLat, myLong], defaultZoomLevel);
     }
     updatePositionFirstTime = false;
 
@@ -258,7 +260,7 @@ export function zoomToFitAllMarkers() {
         });
         // If I am the only user zoom to my marker
         if (allMarkers.length == 1){
-        zoomToMyMarker(2)
+        zoomToMyMarker(defaultZoomLevel)
         }
         if (allMarkers.length > 1){
         map.fitBounds(markerBounds.pad(0.5));
