@@ -43,8 +43,8 @@ let iconRed = L.icon({
 });
 
 // Map initialization 
-export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], defaultZoomLevel);
-// let map = L.map('map', { attributionControl: false }).setView([0, 0], 2);
+// export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], defaultZoomLevel);
+export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([0, 0], defaultZoomLevel);
 
 // OSM layer
 let osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
