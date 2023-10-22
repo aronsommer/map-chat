@@ -41,7 +41,7 @@ let iconRed = L.icon({
 });
 
 // Map initialization 
-export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], 3);
+export let map = L.map('map', { zoomControl: false, attributionControl: false }).setView([46.8182, 8.2275], 2);
 // let map = L.map('map', { attributionControl: false }).setView([0, 0], 2);
 
 // OSM layer
@@ -167,7 +167,7 @@ function updatePosition(position) {
         myMarker.bindPopup("This is you" + "<br>" + myUserName, popupOptions).openPopup();
         // Only go to your position the first time
         // map.fitBounds(featureGroup.getBounds());
-        map.setView([myLat, myLong], 3);
+        map.setView([myLat, myLong], 2);
     }
     updatePositionFirstTime = false;
 
@@ -258,7 +258,7 @@ export function zoomToFitAllMarkers() {
         });
         // If I am the only user zoom to my marker
         if (allMarkers.length == 1){
-        zoomToMyMarker(3)
+        zoomToMyMarker(2)
         }
         if (allMarkers.length > 1){
         map.fitBounds(markerBounds.pad(0.5));
