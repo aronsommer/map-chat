@@ -145,8 +145,8 @@ function updatePosition(position) {
 
     // Add offset if accuracyLevel = 0
     if (accuracyLevel == 0) {
-        // let offset = ((Math.random() > 0.5 ? 0.001 : -0.009) + Math.random() * 0.008);
-        let offset = ((Math.random() > 0.5 ? 0.0001 : -0.0009) + Math.random() * 0.0008);
+        // let offset = ((Math.random() > 0.5 ? 0.0001 : -0.0009) + Math.random() * 0.0008);
+        let offset = ((Math.random() > 0.5 ? 0.01 : -0.09) + Math.random() * 0.08);
         lat = lat + offset;
         long = long + offset;
     }
